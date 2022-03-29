@@ -12,4 +12,4 @@ Next event feature?
 
 Schedule feature?
 
-Make commands not case sensitive
+Make commands not case sensitive - DONE

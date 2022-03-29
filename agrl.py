@@ -57,19 +57,19 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-    if message.content.startswith('!standings'):
+    if message.content.lower().startswith('!standings'):
         driverStandings = getDriverStandings()
         driverJoin = '  |  '.join(driverStandings)
         driverString = '**Test Season Driver Standings:**\n' + driverJoin
         await message.channel.send(driverString)
     
-    if message.content.startswith('!teamstandings'):
+    if message.content.lower().startswith('!teamstandings'):
         teamStandings = getTeamStandings()
         teamJoin = '  |  '.join(teamStandings)
         teamString = '**Test Season Team Standings:**\n' + teamJoin
         await message.channel.send(teamString)
     
-    if message.content.startswith('!register'):
+    if message.content.lower().startswith('!register'):
         await message.channel.send('Register for Season 7 here: ' + championships.season7, reference=message)
 
 #    if message.content.startswith('$kill'):
