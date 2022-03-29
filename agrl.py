@@ -59,9 +59,9 @@ async def on_message(message):
 
     if message.content.startswith('!standings'):
         driverStandings = getDriverStandings()
-        string2 = '  |  '.join(driverStandings)
-        string3 = '**Test Season Driver Standings:**\n' + string2
-        await message.channel.send(string3)
+        driverJoin = '  |  '.join(driverStandings)
+        driverString = '**Test Season Driver Standings:**\n' + driverJoin
+        await message.channel.send(driverString)
     
     if message.content.startswith('!teamstandings'):
         teamStandings = getTeamStandings()
