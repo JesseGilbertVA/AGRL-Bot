@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup
 client = discord.Client()
 
 def getDriverStandings():
-    URL = championships.season7
+    URL = championships.testSeason
     page = requests.get(URL)
     soup = BeautifulSoup(page.content, "html.parser")
     table = soup.findAll('table')
@@ -28,7 +28,7 @@ def getDriverStandings():
     return(returnable)
 
 def getTeamStandings():
-    URL = championships.season7
+    URL = championships.testSeason
     page = requests.get(URL)
     soup = BeautifulSoup(page.content, "html.parser")
     table = soup.findAll('table')
@@ -68,6 +68,9 @@ async def on_message(message):
         teamJoin = '  |  '.join(teamStandings)
         teamString = '**Test Season Team Standings:**\n' + teamJoin
         await message.channel.send(teamString)
+    
+    if message.content.startswith('!register'):
+        await message.channel.send(championships.season7, reference=message)
 
 #    if message.content.startswith('$kill'):
 #            await message.channel.send('goodbye')
