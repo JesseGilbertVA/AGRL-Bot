@@ -71,6 +71,12 @@ async def on_message(message):
     
     if message.content.lower().startswith('!register'):
         await message.channel.send('Register for Season 7 here: ' + championships.season7, reference=message)
+    
+    if message.content.lower().startswith('!livetiming'):
+        await message.channel.send(championships.liveTiming)
+    
+    if message.content.lower().startswith('!setups'):
+        await message.channel.send(championships.setups)
 
 #    if message.content.startswith('$kill'):
 #            await message.channel.send('goodbye')
