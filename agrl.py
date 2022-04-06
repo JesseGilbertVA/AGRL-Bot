@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup
 client = discord.Client()
 
 def getDriverStandings():
-    URL = championships.testSeason
+    URL = championships.currentSeason
     page = requests.get(URL)
     soup = BeautifulSoup(page.content, "html.parser")
     table = soup.findAll('table')
@@ -28,7 +28,7 @@ def getDriverStandings():
     return(returnable)
 
 def getTeamStandings():
-    URL = championships.testSeason
+    URL = championships.currentSeason
     page = requests.get(URL)
     soup = BeautifulSoup(page.content, "html.parser")
     table = soup.findAll('table')
@@ -60,29 +60,25 @@ async def on_message(message):
     if message.content.lower().startswith('!standings'):
         driverStandings = getDriverStandings()
         driverJoin = '  |  '.join(driverStandings)
-        driverString = '**Test Season Driver Standings:**\n' + driverJoin
+        driverString = '**Season ' + championships.currentSeasonString + ' Driver Standings:**\n' + driverJoin
         await message.channel.send(driverString)
     
     if message.content.lower().startswith('!teamstandings'):
         teamStandings = getTeamStandings()
         teamJoin = '  |  '.join(teamStandings)
-        teamString = '**Test Season Team Standings:**\n' + teamJoin
+        teamString = '**Season ' + championships.currentSeasonString + ' Team Standings:**\n' + teamJoin
         await message.channel.send(teamString)
     
+    if message.content.lower().startswith('!seasonpage'):
+        await message.channel.send('Season ' + championships.currentSeasonString + ' page: ' + championships.currentSeason)
+    
     if message.content.lower().startswith('!register'):
-        await message.channel.send('Register for Season 7 here: ' + championships.season7, reference=message)
+        await message.channel.send('Register for Season ' + championships.nextSeasonString + ' here: ' + championships.nextSeason, reference=message)
     
     if message.content.lower().startswith('!livetiming'):
         await message.channel.send(championships.liveTiming)
     
     if message.content.lower().startswith('!setups'):
         await message.channel.send(championships.setups)
-
-#    if message.content.startswith('$kill'):
-#            await message.channel.send('goodbye')
-#            await client.close()
-
-#    if 'word' in message.content:
-#        await message.channel.send('found word')
 
 client.run(config.discordToken)
