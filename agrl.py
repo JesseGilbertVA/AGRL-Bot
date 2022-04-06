@@ -81,4 +81,7 @@ async def on_message(message):
     if message.content.lower().startswith('!setups'):
         await message.channel.send(championships.setups)
 
+    if message.content.lower().startswith('!schedule'):
+        await message.channel.send('Season ' + championships.currentSeasonString + ' Schedule: ' + championships.schedule)
+
 client.run(config.discordToken)
